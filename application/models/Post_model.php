@@ -9,10 +9,10 @@ class Post_model extends CI_Model{
 		if($slug === FALSE)
 		{
 			$query = $this->db->get('posts');
-			echo $query->result_array();
+			return $query->result_array();
 		}
 		
 		$query = $this->db->get_where('posts', array('slug' => $slug));
-		echo $query->row_array();
+		return $query->row_array();
 	}
 }

@@ -9,13 +9,13 @@
   <a class="navbar-brand" href="#">Navbar</a>
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="<?php echo base_url('home'); ?>">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<?php echo base_url(); ?>">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('about'); ?>">About</a>
+        <a class="nav-link" href="<?php echo base_url(); ?>about">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="<?php echo base_url(); ?>posts">Posts</a>
       </li>
     </ul>
   </div>
