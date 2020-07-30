@@ -1,4 +1,7 @@
+	
+	<script>
+		CKEDITOR.replace('editor1');
 
-</nav>
-</body>
+	</script>
+	</body>
 </html>
