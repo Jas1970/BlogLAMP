@@ -15,17 +15,19 @@
 			$data['title'] = 'Create Category';
 
 			$this->form_validation->set_rules('name', 'Name','required');
+
 			if($this->form_validation->run() === FALSE){
 				$this->load->view('templates/header');
 				$this->load->view('categories/create', $data);
 				$this->load->view('templates/footer');
-
 			} else {
 				$this->category_model->create_category();
+
+				$this->session->set_flashdata('category_created', 'Your category has been created');
+
 				redirect('categories');
 			}			
 		}
-
 		public function posts($id){
 			$data['title'] = $this->category_model->get_category($id)->name;
 			
