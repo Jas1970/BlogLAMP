@@ -4,8 +4,10 @@ class Post_model extends CI_Model{
 		$this->load->database();
 	}
 
-	public function get_posts($slug = FALSE)
-	{
+	public function get_posts($slug = FALSE,$limit = FALSE, $offset = FALSE){
+		if($limit){
+			$this->db->limit($limit, $offset);
+		}
 		if($slug === FALSE)
 		{
 			$this->db->order_by('posts.id', 'DESC');
@@ -25,6 +27,7 @@ class Post_model extends CI_Model{
 			'slug'	=>$slug,
 			'body'	=>$this->input->post('body'),
 			'category_id' =>$this->input->post('category_id'),
+			'user_id' =>$this->session->userdata('user_id'),
 			'post_image' =>$post_image  		
 		);
 		return $this->db->insert('posts', $data);

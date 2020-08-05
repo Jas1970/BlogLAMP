@@ -4,41 +4,44 @@
   <title> BlogLAMP </title>
   <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/style.css'); ?>">
   <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/Bootstrap.min.css'); ?>">
-
   <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-
 </head>
 <body>
-<div class="container">
-<nav class="navbar navbar-expand navbar-dark bg-primary">
-      <div class="navbar-brand">
-          <a class="navbar-brand" href="<?php echo base_url(); ?>">ciBlog</a>
-      </div>
-      <div>
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-               <a class="nav-link" href="<?php echo base_url(); ?>">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url(); ?>about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url(); ?>posts">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url(); ?>categories">Categories</a>
-            </li>
-          </ul>
-        </div>
-          <div>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a class="nav-link" href="<?php echo base_url(); ?>users/register">Register</a></li>
 
-            <li><a class="nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a></li>
-            <li><a class="nav-link" href="<?php echo base_url(); ?>categories/create">Create Category</a></li>
-          </ul>
-        </div>
-   </nav>
+  <nav class="navbar navbar-expand navbar-dark bg-primary">
+    <div class="container">
+
+      <div>
+        <a class="navbar-brand" href="<?php echo base_url(); ?>">BlogLAMP</a>
+      </div>
+        <ul class="navbar-nav mr-auto" >
+          <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>">Home</a></li>
+          <li><a class="nav-link" href="<?php echo base_url(); ?>about">About</a></li>
+          <li><a class="nav-link" href="<?php echo base_url(); ?>posts">Blog</a></li>
+          <li><a class="nav-link" href="<?php echo base_url(); ?>categories">Categories</a></li>
+        </ul>
+        <ul class="navbar-nav">
+
+          <?php if(!$this->session->userdata('logged_in')):?>    
+        
+          <li><a class="nav-link" href="<?php echo base_url(); ?>users/login">Login</a></li>
+          <li><a class="nav-link" href="<?php echo base_url(); ?>users/register">Register</a></li>
+           
+          <?php endif;   ?>
+
+          <?php if($this->session->userdata('logged_in')):  ?>    
+        
+          <li><a class="nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a></li>
+          <li><a class="nav-link" href="<?php echo base_url(); ?>categories/create">Create Category</a></li>
+          <li><a class="nav-link" href="<?php echo base_url(); ?>users/logout">Logout</a></li>
+
+          <?php endif;      ?>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
    <!-- Flash messages -->
    <?php if($this->session->flashdata('user_registered')): ?>
     <?php echo '<p class= "alert alert-sucess">'.$this->session->flashdata('user_registered').'</p>'; ?>      
@@ -61,4 +64,19 @@
     <?php echo '<p class= "alert alert-sucess">'.$this->session->flashdata('post_deleted').'</p>'; ?>      
    <?php endif; ?>
 
+   <?php if($this->session->flashdata('login_failed')): ?>
+    <?php echo '<p class= "alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>      
+   <?php endif; ?>
+
+   <?php if($this->session->flashdata('user_loggedin')): ?>
+    <?php echo '<p class= "alert alert-sucess">'.$this->session->flashdata('user_loggedin').'</p>'; ?>      
+   <?php endif; ?>
+
+   <?php if($this->session->flashdata('user_loggedout')): ?>
+    <?php echo '<p class= "alert alert-sucess">'.$this->session->flashdata('user_loggedout').'</p>'; ?>      
+   <?php endif; ?>
+
+   <?php if($this->session->flashdata('category_deleted')): ?>
+    <?php echo '<p class= "alert alert-sucess">'.$this->session->flashdata('categpry_deleted').'</p>'; ?>      
+   <?php endif; ?>
 

@@ -5,11 +5,14 @@
 		<?php echo $post['body']; ?> 
 	</div>
 	<hr>
+<?php if($this->session->userdata('user_id') == $post['user_id']): ?>	
 
 <?php echo form_open('/posts/delete/'.$post['id']); ?>
 	<input type="submit" value="Delete" class="btn btn-danger"></input>
 	<a class="btn btn-secondary pull-left" href="<?php echo base_url(); ?>posts/edit/<?php echo $post['slug']; ?>">Edit</a>
 </form>
+
+<?php endif; ?>
 
 
 <h3>Comments</h3>
